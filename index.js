@@ -8,6 +8,17 @@ var colors = [
 	[255,0, 255]  //T
 ]
 
+var threeColors = [
+	[255,255,255], 
+	[0,0,0], 
+	[127,127,127] 
+]
+
+var twoColors = [
+	[0,255,0], 
+	[255,255,0]
+]
+
 //console.log(hexColors(colors));
 
 
@@ -16,6 +27,8 @@ setInterval(function() {
 }, 3000);
 
 //sendCommand(rainbowCommand(15));
+//sendCommand(colorWipeCommand(10, twoColors)); //or threeColors
+//sendCommand(letterWipeCommand(127, twoColors));
 
 
 //Mode 2 rainbow -> prefixed with 02
@@ -28,6 +41,45 @@ function rainbowCommand(wait)
 	wait = (wait.length == 1) ? "0" + wait : wait;
 	
 	var hexString = "02" + wait;
+	return hexString;
+}
+
+function colorWipeCommand(wait, colors)
+{
+	var wait = Number(wait).toString(16);
+	wait = (wait.length == 1) ? "0" + wait : wait;
+
+	var hexString = "03";
+	hexString += wait;
+
+	colors.forEach(colorArr => {
+		colorArr.forEach(colorValue =>{
+			var str = Number(colorValue).toString(16);
+			str = (str.length == 1) ? "0" + str : str;
+			hexString += str;
+		});
+	});
+
+	return hexString;
+}
+
+//wait is multiplied by 2 in particle photon
+function letterWipeCommand(wait, colors)
+{
+	var wait = Number(wait).toString(16);
+	wait = (wait.length == 1) ? "0" + wait : wait;
+
+	var hexString = "04";
+	hexString += wait;
+
+	colors.forEach(colorArr => {
+		colorArr.forEach(colorValue =>{
+			var str = Number(colorValue).toString(16);
+			str = (str.length == 1) ? "0" + str : str;
+			hexString += str;
+		});
+	});
+
 	return hexString;
 }
 

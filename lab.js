@@ -37,7 +37,7 @@ var twoColors = [
 //sendCommand(randomFade(50));
 
 //06 randomLetterFade with wait;
-sendCommand(randomLetterFade(50));
+sendCommand(randomLetterFade(100));
 
 
 /*

@@ -2,34 +2,35 @@ var request = require("request");
 var options = require("./options");
 
 var colors = [
-	[255,0,0], //8
-	[0,255,0], //7
-	[0,0,255], //6
-	[255,0, 255],  //5
-	[255,0, 255],  //4
-	[255,0, 255]  //3
+	[255,0,0], //S
+	[0,255,0], //A
+	[0,0,255], //M
+	[255,255, 0],  //S
+	[255,0, 255],  //O
+	[0,255, 255]  //N
 ]
 
 var threeColors = [
-	[25,25,25], 
-	[50,50,50],
-	[35,35,35]
+	[255,0,0], 
+	[0,255,0],
+	[0,0,255]
 ]
 
 var twoColors = [
-	[25,50,50], 
-	[150,150,150]
+	[255,255,0], 
+	[0,255,255]
 ]
 
 
 //01 set colors
 //sendCommand(colorCommand(randomColors()));
+//sendCommand(colorCommand(colors));
 
 //02 rainbow
 //sendCommand(rainbowCommand(30));
 
 //03 color wipe with wait and 2 or 3 colors
-sendCommand(colorWipeCommand(150, threeColors)); //or threeColors
+//sendCommand(colorWipeCommand(50, threeColors)); //or threeColors
 
 
 //04 letter wipe wit wait and 2 or 3 colors
@@ -39,7 +40,7 @@ sendCommand(colorWipeCommand(150, threeColors)); //or threeColors
 //sendCommand(randomFade(50));
 
 //06 randomLetterFade with wait;
-//sendCommand(randomLetterFade(50));
+sendCommand(randomLetterFade(50));
 
 
 /*
@@ -170,7 +171,7 @@ function sendCommand(command)
 {
 	console.log("command", command);
 	request({
-			url : options.api_base + "/v1/devices/"+options['hexart'+ '_device_id']+"/mode",
+			url : options.api_base + "/v1/devices/"+options['samson'+ '_device_id']+"/mode",
 			method : "POST",
 			form : {
 				args : command,
